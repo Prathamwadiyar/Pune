@@ -91,17 +91,35 @@ const useStore = create((set, get) => ({
   chatMessages: [],
   isChatLoading: false,
   addChatMessage: (message) => set((state) => ({
-    chatMessages: [...state.chatMessages, message]
+    chatMessages: [...state.chatMessages, { ...message, timestamp: Date.now() }]
   })),
   setChatLoading: (loading) => set({ isChatLoading: loading }),
   clearChat: () => set({ chatMessages: [] }),
   
-  // UI
+  // UI / Layout
   sidebarOpen: false,
   chatOpen: false,
   toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
   toggleChat: () => set((state) => ({ chatOpen: !state.chatOpen })),
   setChatOpen: (open) => set({ chatOpen: open }),
+
+  // Accessibility
+  highContrast: false,
+  largeText: false,
+  toggleHighContrast: () => set((s) => {
+    const v = !s.highContrast;
+    if (typeof document !== 'undefined') document.body.classList.toggle('high-contrast', v);
+    return { highContrast: v };
+  }),
+  toggleLargeText: () => set((s) => {
+    const v = !s.largeText;
+    if (typeof document !== 'undefined') document.body.classList.toggle('large-text', v);
+    return { largeText: v };
+  }),
+
+  // Smooth scroll ready
+  scrollReady: false,
+  setScrollReady: (v) => set({ scrollReady: v }),
 }));
 
 export default useStore;

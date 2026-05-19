@@ -247,7 +247,7 @@ export default function OnboardingPage() {
             <div>
               <label className="block text-sm font-medium mb-2" style={{ color: 'var(--neutral-700)' }}>{T('annualIncome')}</label>
               <div className="grid grid-cols-1 gap-2">
-                {[['below1L','incomeBelow1L'], ['1to2_5L','income1to2_5L'], ['2_5to5L','income2_5to5L'], ['above5L','incomeAbove5L']].map(([val, key]) => (
+                {[['below1L', 'incomeBelow1L'], ['1to2_5L', 'income1to2_5L'], ['2_5to5L', 'income2_5to5L'], ['above5L', 'incomeAbove5L']].map(([val, key]) => (
                   <OptionButton key={val} selected={profile.annualIncome === val} onClick={() => updateProfile({ annualIncome: val })}>{T(key)}</OptionButton>
                 ))}
               </div>
@@ -308,7 +308,7 @@ export default function OnboardingPage() {
               {T('documentsIntro')} <Tooltip text={T('documentsTooltip')} />
             </p>
             <div className="grid grid-cols-1 gap-2">
-              {['aadhaar','rationCard','voterId','mgnrega','pmKisan','kcc','landRecords','casteCert','incomeCert','birthCert','udidCert','eShram'].map(doc => (
+              {['aadhaar', 'rationCard', 'voterId', 'mgnrega', 'pmKisan', 'kcc', 'landRecords', 'casteCert', 'incomeCert', 'birthCert', 'udidCert', 'eShram'].map(doc => (
                 <CheckboxButton key={doc} checked={profile.documents.includes(doc)}
                   onChange={(checked) => {
                     const docs = checked ? [...profile.documents, doc] : profile.documents.filter(d => d !== doc);
@@ -378,4 +378,4 @@ export default function OnboardingPage() {
       </div>
     </div>
   );
-}
+} 

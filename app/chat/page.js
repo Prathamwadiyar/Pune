@@ -21,7 +21,7 @@ export default function ChatPage() {
 
   const sendMessage = async (text) => {
     if (!text.trim() || isChatLoading) return;
-    const userMsg = { role: 'user', content: text, timestamp: Date.now() };
+    const userMsg = { role: 'user', content: text };
     addChatMessage(userMsg);
     setInput('');
     setChatLoading(true);
@@ -36,16 +36,16 @@ export default function ChatPage() {
 
       if (res.ok) {
         const data = await res.json();
-        addChatMessage({ role: 'assistant', content: data.response, timestamp: Date.now() });
+        addChatMessage({ role: 'assistant', content: data.response });
       } else {
         // Fallback response
         const fallback = language === 'hi'
           ? 'मुझे खेद है, अभी AI सेवा उपलब्ध नहीं है। कृपया बाद में प्रयास करें। आप अपने डैशबोर्ड पर जाकर अपनी योजनाएं देख सकते हैं।'
           : 'I apologize, the AI service is not available right now. Please try again later. You can visit your dashboard to see your matched schemes.';
-        addChatMessage({ role: 'assistant', content: fallback, timestamp: Date.now() });
+        addChatMessage({ role: 'assistant', content: fallback });
       }
     } catch {
-      addChatMessage({ role: 'assistant', content: 'Sorry, I couldn\'t connect to the service. Please check your internet connection and try again.', timestamp: Date.now() });
+      addChatMessage({ role: 'assistant', content: 'Sorry, I couldn\'t connect to the service. Please check your internet connection and try again.' });
     }
     setChatLoading(false);
   };

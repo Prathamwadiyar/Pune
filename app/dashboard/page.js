@@ -119,7 +119,7 @@ export default function DashboardPage() {
           setTimeout(() => { setResults(generateMockResults(profile)); setIsAnalyzing(false); }, 2000);
         });
     }
-  }, [onboardingComplete, results]);
+  }, [onboardingComplete, results, language, profile, router, setIsAnalyzing, setResults]);
 
   if (isAnalyzing || !results) {
     return (
